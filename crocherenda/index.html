@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crochê e Renda — Aprenda, Faça e Venda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra: #C0614A;
+  --terra-dk: #9A4A36;
+  --terra-lt: #F5E6E2;
+  --terra-md: #E8A090;
+  --bege: #F9F3EE;
+  --bege-dk: #EDE3D8;
+  --verde: #4A7C59;
+  --verde-lt: #E8F5EC;
+  --ouro: #D4A84B;
+  --ouro-lt: #FBF0D9;
+  --preto: #1A1209;
+  --cinza: #6B6460;
+  --cinza-lt: #EAE5E0;
+  --branco: #FFFDF9;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--branco); color: var(--preto); overflow-x: hidden; line-height: 1.6; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+@keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.anim-up { animation: fadeUp .7s ease both; }
+.d1{animation-delay:.1s} .d2{animation-delay:.25s} .d3{animation-delay:.4s} .d4{animation-delay:.55s} .d5{animation-delay:.7s}
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+/* TOPBAR */
+.topbar { background:var(--preto); color:#fff; text-align:center; padding:10px 20px; font-size:13px; font-weight:500; letter-spacing:.04em; }
+.topbar span { color:var(--ouro); }
+
+/* HERO */
+.hero { background:var(--preto); position:relative; overflow:hidden; padding: 60px 0 0; }
+.hero-bg {
+  position:absolute; inset:0;
+  background-image: url('https://images.unsplash.com/photo-1604881991720-f91add269bed?w=1200&q=80');
+  background-size: cover; background-position: center;
+  opacity: .12; filter: grayscale(30%);
+}
+.hero-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(26,18,9,.97) 0%, rgba(26,18,9,.85) 60%, rgba(192,97,74,.15) 100%);
+}
+.hero-content { position:relative; z-index:2; }
+
+.hero-tag { display:inline-block; background:rgba(192,97,74,.25); border:1px solid rgba(192,97,74,.5); color:var(--terra-md); padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px; }
+.hero h1 { font-family:var(--font-display); font-size:clamp(1.9rem,5.5vw,3.2rem); font-weight:900; color:#fff; line-height:1.15; margin-bottom:14px; }
+.hero h1 em { font-style:normal; color:var(--terra-md); }
+.hero-sub { font-size:clamp(.95rem,2.2vw,1.12rem); color:rgba(255,255,255,.6); max-width:540px; margin-bottom:28px; line-height:1.7; font-weight:300; }
+
+.hero-bullets { display:flex; flex-direction:column; gap:9px; margin-bottom:36px; }
+.hero-bullet { display:flex; align-items:center; gap:12px; color:rgba(255,255,255,.88); font-size:14px; }
+.hero-bullet-dot { width:20px; height:20px; border-radius:50%; background:var(--verde); display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:700; flex-shrink:0; }
+
+.btn-cta { display:inline-flex; align-items:center; gap:10px; background:var(--terra); color:#fff; padding:17px 34px; border-radius:8px; font-size:15px; font-weight:600; text-decoration:none; border:none; cursor:pointer; transition:background .2s, transform .15s; position:relative; overflow:hidden; animation:pulse 2.5s ease-in-out infinite; }
+.btn-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent); background-size:200% 100%; animation:shimmer 2s linear infinite; }
+.btn-cta:hover { background:var(--terra-dk); transform:translateY(-2px); animation:none; }
+.btn-cta-lg { font-size:17px; padding:20px 44px; border-radius:10px; width:100%; max-width:460px; justify-content:center; }
+.hero-guarantee { margin-top:14px; color:rgba(255,255,255,.4); font-size:12px; display:flex; align-items:center; gap:6px; }
+
+/* VSL */
+.vsl-section {
+  background: var(--preto);
+  padding: 0 0 60px;
+  position: relative;
+  z-index: 2;
+}
+.vsl-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.vsl-container {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 80px rgba(0,0,0,.6), 0 0 0 2px rgba(192,97,74,.4);
+}
+.vsl-ratio { position:relative; padding-top:56.25%; }
+.vsl-placeholder {
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, #1a1209 0%, #2d1a10 50%, #1a1209 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:16px; cursor:pointer;
+}
+.vsl-bg-img {
+  position:absolute; inset:0;
+  background-image: url('https://images.unsplash.com/photo-1614885849476-86cd12a6c1c3?w=800&q=80');
+  background-size:cover; background-position:center;
+  opacity:.25; filter:grayscale(20%);
+}
+.vsl-play-btn {
+  width:72px; height:72px; border-radius:50%;
+  background:var(--terra);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; color:#fff;
+  box-shadow:0 0 0 12px rgba(192,97,74,.2), 0 0 0 24px rgba(192,97,74,.1);
+  transition:transform .2s, box-shadow .2s;
+  position:relative; z-index:2;
+  animation:pulse 2s ease-in-out infinite;
+}
+.vsl-play-btn:hover { transform:scale(1.1); }
+.vsl-title {
+  font-family:var(--font-display);
+  font-size:clamp(1rem,2.5vw,1.3rem);
+  color:#fff; text-align:center;
+  position:relative; z-index:2;
+  padding: 0 20px;
+  line-height:1.4;
+}
+.vsl-duration {
+  font-size:12px; color:rgba(255,255,255,.4);
+  position:relative; z-index:2;
+}
+.vsl-instruction {
+  background: rgba(192,97,74,.1);
+  border: 1px dashed rgba(192,97,74,.4);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.6;
+}
+.vsl-instruction strong { color: var(--terra-md); display:block; margin-bottom:4px; }
+
+/* SOCIAL STRIP */
+.social-strip { background:var(--terra-lt); border-top:2px solid var(--terra-md); border-bottom:2px solid var(--terra-md); padding:18px 0; }
+.social-strip-inner { display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap; }
+.social-stat { text-align:center; }
+.social-stat-num { font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--terra); line-height:1; }
+.social-stat-label { font-size:11px; color:var(--cinza); font-weight:500; margin-top:2px; }
+.social-divider { width:1px; height:34px; background:var(--terra-md); opacity:.4; }
+
+section { padding:68px 0; }
+.section-tag { display:inline-block; background:var(--terra-lt); color:var(--terra); padding:4px 14px; border-radius:100px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:14px; }
+.section-tag.verde { background:var(--verde-lt); color:var(--verde); }
+.section-tag.ouro  { background:var(--ouro-lt); color:#8a6820; }
+h2 { font-family:var(--font-display); font-size:clamp(1.55rem,3.8vw,2.3rem); font-weight:700; line-height:1.22; color:var(--preto); margin-bottom:12px; }
+h2 em { font-style:normal; color:var(--terra); }
+.section-lead { font-size:15px; color:var(--cinza); max-width:540px; line-height:1.7; margin-bottom:44px; }
+
+/* GALERIA DE PEÇAS */
+.gallery-section { background:var(--bege); }
+.gallery-intro { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; margin-bottom:40px; }
+@media(max-width:600px){ .gallery-intro { grid-template-columns:1fr; } }
+.gallery-intro-img {
+  border-radius:14px; overflow:hidden;
+  aspect-ratio:4/3;
+  position:relative;
+}
+.gallery-intro-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
+.gallery-intro-img:hover img { transform:scale(1.04); }
+.gallery-intro-img .img-badge {
+  position:absolute; bottom:14px; left:14px;
+  background:rgba(0,0,0,.7); color:#fff;
+  padding:5px 12px; border-radius:100px;
+  font-size:12px; font-weight:600;
+  backdrop-filter:blur(4px);
+}
+
+.pecas-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+@media(max-width:640px){ .pecas-grid { grid-template-columns:repeat(2,1fr); } }
+
+.peca-card {
+  border-radius:12px; overflow:hidden;
+  position:relative; background:#ddd;
+  aspect-ratio:3/4;
+  cursor:pointer;
+}
+.peca-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
+.peca-card:hover img { transform:scale(1.06); }
+.peca-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:14px;
+  opacity:0; transition:opacity .25s;
+}
+.peca-card:hover .peca-overlay { opacity:1; }
+.peca-nome { font-size:13px; font-weight:600; color:#fff; line-height:1.3; }
+.peca-preco { font-size:12px; color:var(--terra-md); margin-top:3px; }
+
+/* DOR */
+.dor-section { background:#fff; }
+.dor-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:36px; }
+@media(max-width:520px){ .dor-grid { grid-template-columns:1fr; } }
+.dor-item { background:var(--bege); border:1px solid var(--bege-dk); border-left:4px solid var(--terra); border-radius:0 8px 8px 0; padding:15px 18px; font-size:14px; color:var(--preto); line-height:1.5; }
+.dor-reveal { background:var(--preto); border-radius:14px; padding:28px 32px; position:relative; overflow:hidden; }
+.dor-reveal::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(192,97,74,.2),transparent 70%); }
+.dor-reveal-text { font-family:var(--font-display); font-size:clamp(1.05rem,2.8vw,1.45rem); color:#fff; line-height:1.45; position:relative; }
+.dor-reveal-text em { font-style:normal; color:var(--terra-md); }
+.dor-reveal-sub { font-size:14px; color:rgba(255,255,255,.45); margin-top:10px; position:relative; }
+
+/* PARA QUEM */
+.paraquem-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:520px){ .paraquem-grid { grid-template-columns:1fr; } }
+.paraquem-item { display:flex; gap:14px; align-items:flex-start; background:var(--bege); border-radius:10px; padding:16px; }
+.paraquem-arrow { width:26px; height:26px; border-radius:50%; background:var(--terra); color:#fff; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.paraquem-text { font-size:14px; color:var(--preto); line-height:1.55; }
+
+/* MÓDULOS */
+.modulos-section { background:var(--preto); }
+.modulos-section h2 { color:#fff; }
+.modulos-section .section-lead { color:rgba(255,255,255,.5); }
+.modulos-grid { display:flex; flex-direction:column; gap:8px; }
+.modulo { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:12px; overflow:hidden; transition:border-color .2s; }
+.modulo:hover { border-color:rgba(192,97,74,.5); }
+.modulo-hdr { display:flex; align-items:center; gap:14px; padding:16px 18px; cursor:pointer; }
+.modulo-num { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; color:#fff; }
+.modulo-info { flex:1; }
+.modulo-title { font-size:14px; font-weight:600; color:#fff; margin-bottom:2px; }
+.modulo-meta { font-size:11px; color:rgba(255,255,255,.35); }
+.modulo-toggle { font-size:18px; color:rgba(255,255,255,.3); transition:transform .2s; }
+.modulo.open .modulo-toggle { transform:rotate(45deg); color:var(--terra-md); }
+.modulo-body { display:none; padding:0 18px 16px 66px; }
+.modulo.open .modulo-body { display:block; }
+.aulas-list { display:flex; flex-direction:column; gap:5px; }
+.aula-item { display:flex; gap:10px; align-items:center; font-size:13px; color:rgba(255,255,255,.6); padding:5px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+.aula-item:last-child { border-bottom:none; }
+.aula-play { width:18px; height:18px; border-radius:50%; border:1px solid rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:7px; color:rgba(255,255,255,.35); flex-shrink:0; }
+.aula-dur { margin-left:auto; font-size:11px; color:rgba(255,255,255,.25); }
+.modulo-diferencial { background:rgba(74,124,89,.15); border:1px solid rgba(74,124,89,.3); border-radius:8px; padding:9px 13px; margin-top:10px; font-size:12px; color:#9FD4B0; line-height:1.5; }
+
+/* BÔNUS */
+.bonus-section { background:var(--bege); }
+.bonus-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:520px){ .bonus-grid { grid-template-columns:1fr; } }
+.bonus-card { background:#fff; border:1px solid var(--cinza-lt); border-radius:14px; padding:22px; position:relative; overflow:hidden; transition:transform .2s, box-shadow .2s; }
+.bonus-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.08); }
+.bonus-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.bonus-card.b1::before{background:var(--terra)} .bonus-card.b2::before{background:var(--verde)} .bonus-card.b3::before{background:#7B5EA7} .bonus-card.b4::before{background:var(--ouro)}
+.bonus-icon { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; color:#fff; margin-bottom:12px; }
+.bonus-card.b1 .bonus-icon{background:var(--terra)} .bonus-card.b2 .bonus-icon{background:var(--verde)} .bonus-card.b3 .bonus-icon{background:#7B5EA7} .bonus-card.b4 .bonus-icon{background:var(--ouro)}
+.bonus-title { font-size:14px; font-weight:600; color:var(--preto); margin-bottom:6px; line-height:1.3; }
+.bonus-desc { font-size:13px; color:var(--cinza); line-height:1.55; }
+.bonus-valor { margin-top:10px; font-size:12px; color:var(--cinza); }
+.bonus-valor span{text-decoration:line-through;opacity:.6} .bonus-valor strong{color:var(--verde);font-size:13px}
+
+/* DEPOIMENTOS */
+.depo-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+@media(max-width:700px){ .depo-grid{ grid-template-columns:1fr; } }
+@media(min-width:521px) and (max-width:700px){ .depo-grid{ grid-template-columns:1fr 1fr; } }
+.depo-card { background:var(--bege); border:1px solid var(--bege-dk); border-radius:12px; padding:20px; }
+.depo-stars { color:var(--ouro); font-size:13px; margin-bottom:10px; letter-spacing:2px; }
+.depo-text { font-size:14px; color:var(--preto); line-height:1.6; margin-bottom:14px; font-style:italic; }
+.depo-author { display:flex; align-items:center; gap:10px; }
+.depo-avatar { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0; }
+.depo-name { font-size:13px; font-weight:600; color:var(--preto); }
+.depo-city { font-size:11px; color:var(--cinza); }
+.depo-resultado { margin-top:10px; padding:7px 11px; background:var(--verde-lt); border-radius:6px; font-size:12px; color:var(--verde); font-weight:600; }
+
+/* PREÇO */
+.preco-section { background:var(--preto); }
+.preco-section h2 { color:#fff; }
+.preco-box { background:rgba(255,255,255,.04); border:2px solid var(--terra); border-radius:20px; padding:40px; max-width:500px; margin:0 auto; text-align:center; position:relative; overflow:hidden; }
+.preco-box::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 0%,rgba(192,97,74,.12),transparent 70%); pointer-events:none; }
+.preco-destaque { display:inline-block; background:var(--terra); color:#fff; padding:6px 18px; border-radius:100px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px; }
+.preco-de { font-size:15px; color:rgba(255,255,255,.3); text-decoration:line-through; margin-bottom:4px; }
+.preco-por { font-family:var(--font-display); font-size:3.8rem; font-weight:900; color:#fff; line-height:1; margin-bottom:6px; }
+.preco-por sup { font-size:1.5rem; vertical-align:top; margin-top:10px; }
+.preco-parcela { font-size:14px; color:rgba(255,255,255,.45); margin-bottom:26px; }
+.preco-parcela strong { color:rgba(255,255,255,.75); }
+.preco-lista { text-align:left; margin-bottom:28px; display:flex; flex-direction:column; gap:9px; }
+.preco-item { display:flex; gap:11px; align-items:flex-start; font-size:13px; color:rgba(255,255,255,.8); }
+.preco-check { width:18px; height:18px; border-radius:50%; background:var(--verde); display:flex; align-items:center; justify-content:center; font-size:9px; color:#fff; flex-shrink:0; margin-top:2px; }
+.preco-garantia { margin-top:18px; display:flex; align-items:center; gap:8px; justify-content:center; color:rgba(255,255,255,.35); font-size:12px; }
+
+/* GARANTIA */
+.garantia-box { display:flex; gap:28px; align-items:center; background:#fff; border:1px solid var(--cinza-lt); border-radius:16px; padding:32px 36px; }
+@media(max-width:580px){ .garantia-box{flex-direction:column;text-align:center} }
+.garantia-icon { font-size:4.5rem; flex-shrink:0; }
+.garantia-title { font-family:var(--font-display); font-size:1.4rem; font-weight:700; color:var(--preto); margin-bottom:8px; }
+.garantia-text { font-size:14px; color:var(--cinza); line-height:1.65; }
+
+/* FAQ */
+.faq-list { display:flex; flex-direction:column; gap:7px; max-width:680px; margin:0 auto; }
+.faq-item { background:var(--bege); border:1px solid var(--bege-dk); border-radius:10px; overflow:hidden; }
+.faq-q { padding:16px 18px; font-size:14px; font-weight:500; color:var(--preto); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; user-select:none; }
+.faq-q:hover { color:var(--terra); }
+.faq-icon { font-size:19px; color:var(--terra); transition:transform .2s; flex-shrink:0; }
+.faq-item.open .faq-icon { transform:rotate(45deg); }
+.faq-a { display:none; padding:0 18px 16px; font-size:13px; color:var(--cinza); line-height:1.65; border-top:1px solid var(--bege-dk); padding-top:12px; }
+.faq-item.open .faq-a { display:block; }
+
+/* CTA FINAL */
+.cta-final { background:var(--terra); padding:76px 0; text-align:center; position:relative; overflow:hidden; }
+.cta-final::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.08),transparent 60%),radial-gradient(circle at 80% 30%,rgba(0,0,0,.1),transparent 50%); }
+.cta-final h2 { color:#fff; font-size:clamp(1.5rem,3.8vw,2.4rem); margin-bottom:14px; position:relative; }
+.cta-final p { color:rgba(255,255,255,.72); font-size:15px; max-width:480px; margin:0 auto 32px; line-height:1.65; position:relative; }
+.btn-cta-final { background:#fff; color:var(--terra); font-weight:700; }
+.btn-cta-final:hover { background:var(--branco); }
+
+footer { background:var(--preto); padding:26px 20px; text-align:center; color:rgba(255,255,255,.28); font-size:12px; line-height:1.7; }
+footer a { color:rgba(255,255,255,.28); }
+
+.sticky-cta { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--preto); border-top:2px solid var(--terra); padding:11px 18px; z-index:999; align-items:center; justify-content:space-between; gap:10px; }
+@media(max-width:620px){ .sticky-cta{display:flex} }
+.sticky-cta-info { color:rgba(255,255,255,.65); font-size:12px; }
+.sticky-cta-info strong { color:#fff; font-size:15px; display:block; }
+.sticky-cta-btn { background:var(--terra); color:#fff; padding:11px 20px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+
+/* IMG LAZY LOAD */
+.img-load { opacity:0; transition:opacity .5s; }
+.img-load.loaded { opacity:1; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">🔥 Oferta por tempo limitado — <span>R$ 47 acesso vitalício</span>. Garantia de 7 dias.</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-tag anim-up d1">✦ Curso Completo de Crochê</div>
+    <h1 class="anim-up d2">
+      Aprenda a fazer as peças<br>
+      que <em>mais vendem</em> — e finalmente<br>
+      <em>ganhe dinheiro</em> com crochê
+    </h1>
+    <p class="hero-sub anim-up d3">Do ponto básico à primeira venda. Método completo com área de membros, vídeo aulas, planilha de precificação automática e scripts prontos para WhatsApp.</p>
+    <div class="hero-bullets anim-up d4">
+      <div class="hero-bullet"><div class="hero-bullet-dot">✓</div>6 módulos com 40+ aulas em vídeo</div>
+      <div class="hero-bullet"><div class="hero-bullet-dot">✓</div>Fórmula de precificação — nunca mais venda barato</div>
+      <div class="hero-bullet"><div class="hero-bullet-dot">✓</div>Scripts prontos para WhatsApp e Instagram</div>
+      <div class="hero-bullet"><div class="hero-bullet-dot">✓</div>Planilha automática que calcula o preço de cada peça</div>
+    </div>
+    <div class="anim-up d5">
+      <a href="#preco" class="btn-cta">Quero começar agora <span>→</span></a>
+      <div class="hero-guarantee">🔒 Compra segura · Acesso imediato · Garantia de 7 dias</div>
+    </div>
+  </div>
+</section>
+
+<!-- VSL -->
+<div class="vsl-section">
+  <div class="vsl-wrapper">
+    <div class="vsl-container">
+      <div class="vsl-ratio">
+        <div class="vsl-placeholder" id="vslPlayer">
+          <div class="vsl-bg-img"></div>
+          <div class="vsl-play-btn" onclick="playVSL()">▶</div>
+          <div class="vsl-title">Assista: Como transformar crochê em renda extra real</div>
+          <div class="vsl-duration">Vídeo de apresentação · ~3 min</div>
+          <!-- Quando tiver o vídeo, substitua este placeholder pelo iframe:
+               <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID?autoplay=1" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>
+          -->
+        </div>
+      </div>
+    </div>
+    <div class="vsl-instruction">
+      <strong>📹 Como adicionar seu vídeo aqui:</strong>
+      1. Faça o upload da VSL no YouTube (não listado) ou Vimeo.<br>
+      2. Copie o ID do vídeo (ex: <code>dQw4w9WgXcQ</code> do link youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong>).<br>
+      3. No código HTML, substitua o bloco <code>vsl-placeholder</code> por:<br>
+      <code style="background:rgba(255,255,255,.08);padding:4px 8px;border-radius:4px;display:inline-block;margin-top:4px">&lt;iframe src="https://www.youtube.com/embed/SEU_ID?autoplay=1" ...&gt;&lt;/iframe&gt;</code>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip">
+  <div class="social-strip-inner">
+    <div class="social-stat"><div class="social-stat-num">2.000+</div><div class="social-stat-label">Alunas ativas</div></div>
+    <div class="social-divider"></div>
+    <div class="social-stat"><div class="social-stat-num">40+</div><div class="social-stat-label">Aulas em vídeo</div></div>
+    <div class="social-divider"></div>
+    <div class="social-stat"><div class="social-stat-num">R$550</div><div class="social-stat-label">Valor máximo por peça</div></div>
+    <div class="social-divider"></div>
+    <div class="social-stat"><div class="social-stat-num">7 dias</div><div class="social-stat-label">Garantia total</div></div>
+  </div>
+</div>
+
+<!-- GALERIA DE PEÇAS -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-tag">Peças que você vai aprender</div>
+    <h2>Do básico às peças que <em>vendem mais</em></h2>
+    <p class="section-lead">Cada aula termina com uma peça pronta para vender — com o preço justo calculado.</p>
+
+    <div class="gallery-intro">
+      <div class="gallery-intro-img">
+        <img class="img-load" data-src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=700&q=80" alt="Professora ensinando crochê" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E">
+        <div class="img-badge">✦ Do zero ao primeiro ponto</div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--preto);margin-bottom:14px;line-height:1.3">Aprenda a fazer as peças que mais vendem — e descubra como cobrar o preço justo.</h3>
+        <p style="font-size:14px;color:var(--cinza);line-height:1.7;margin-bottom:18px">Nossa professora ensina cada técnica com as mãos em close — você vê cada ponto sendo feito em tempo real. Sem enrolação, sem teoria desnecessária. Só o que você precisa para fazer a peça e colocar à venda.</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;font-size:13px;color:var(--preto)"><span style="color:var(--terra);font-weight:700">→</span>8 categorias de peças com maior valor de venda</div>
+          <div style="display:flex;gap:10px;font-size:13px;color:var(--preto)"><span style="color:var(--terra);font-weight:700">→</span>Cada peça com o preço real calculado na aula</div>
+          <div style="display:flex;gap:10px;font-size:13px;color:var(--preto)"><span style="color:var(--terra);font-weight:700">→</span>Assinantes do Clube recebem novas aulas toda semana</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pecas-grid">
+      <div class="peca-card">
+        <img class="img-load" data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Tapete crochê" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3C/svg%3E">
+        <div class="peca-overlay"><div class="peca-nome">Tapete oval</div><div class="peca-preco">R$110 a R$180</div></div>
+      </div>
+      <div class="peca-card">
+        <img class="img-load" data-src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&q=80" alt="Bolsa crochê" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3C/svg%3E">
+        <div class="peca-overlay"><div class="peca-nome">Bolsa tote</div><div class="peca-preco">R$120 a R$200</div></div>
+      </div>
+      <div class="peca-card">
+        <img class="img-load" data-src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" alt="Top crochê" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3C/svg%3E">
+        <div class="peca-overlay"><div class="peca-nome">Top cropped</div><div class="peca-preco">R$150 a R$280</div></div>
+      </div>
+      <div class="peca-card">
+        <img class="img-load" data-src="https://images.unsplash.com/photo-1555431189-0fabf2667795?w=400&q=80" alt="Amigurumi" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3C/svg%3E">
+        <div class="peca-overlay"><div class="peca-nome">Amigurumi</div><div class="peca-preco">R$60 a R$120</div></div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:13px;color:var(--cinza);margin-top:16px">+4 categorias no curso: jogo de banheiro, vestido infantil, necessaire e macramê</p>
+  </div>
+</section>
+
+<!-- DOR -->
+<section class="dor-section">
+  <div class="container">
+    <div class="section-tag">Você se identifica?</div>
+    <h2>Você faz crochê lindo — mas <em>ainda não está ganhando</em> o que merece</h2>
+    <p class="section-lead">Se alguma dessas situações soa familiar, este curso foi feito para você:</p>
+    <div class="dor-grid">
+      <div class="dor-item">Cobra qualquer preço e sente que está trabalhando de graça</div>
+      <div class="dor-item">Não sabe calcular o valor real da sua mão de obra</div>
+      <div class="dor-item">Cliente pede desconto e você sempre acaba cedendo</div>
+      <div class="dor-item">Tem habilidade mas não sabe como divulgar as peças</div>
+      <div class="dor-item">Não sabe quais peças têm maior valor de venda</div>
+      <div class="dor-item">Quer renda extra real mas não sabe por onde começar</div>
+    </div>
+    <div class="dor-reveal">
+      <div class="dor-reveal-text">O problema não é o seu crochê.<br>É que <em>ninguém te ensinou a precificar</em><br>— e a vender.</div>
+      <div class="dor-reveal-sub">Este curso resolve os dois. Do ponto básico à primeira venda.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section style="background:var(--bege)">
+  <div class="container">
+    <div class="section-tag">Para quem é</div>
+    <h2>Este curso é para você que...</h2>
+    <p class="section-lead">Não importa se nunca pegou uma agulha ou já faz crochê há anos.</p>
+    <div class="paraquem-grid">
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">Quer aprender crochê do zero e já começar com o mindset de quem vai vender</div></div>
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">Já faz crochê mas cobra barato e não sabe como mudar isso</div></div>
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">Quer uma renda extra real trabalhando em casa no seu tempo livre</div></div>
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">Quer aprender a vender pelo WhatsApp e Instagram sem precisar de muitos seguidores</div></div>
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">É mãe, tem pouco tempo e precisa de um método direto e prático</div></div>
+      <div class="paraquem-item"><div class="paraquem-arrow">→</div><div class="paraquem-text">Quer transformar um hobby que ama em uma fonte de renda consistente</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="modulos-section">
+  <div class="container">
+    <div class="section-tag">Conteúdo completo</div>
+    <h2>O que você vai aprender</h2>
+    <p class="section-lead">6 módulos do básico ao negócio. Vídeo aulas curtas, diretas e práticas.</p>
+    <div class="modulos-grid">
+
+      <div class="modulo" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#555">0</div>
+          <div class="modulo-info"><div class="modulo-title">Boas-vindas — Como aproveitar o curso</div><div class="modulo-meta">1 aula · 5 min</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list"><div class="aula-item"><div class="aula-play">▶</div>Como navegar e por onde começar<div class="aula-dur">5 min</div></div></div></div>
+      </div>
+
+      <div class="modulo open" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#C0614A">1</div>
+          <div class="modulo-info"><div class="modulo-title">Fundamentos do Crochê — Do Zero ao Primeiro Ponto</div><div class="modulo-meta">5 aulas · ~55 min</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list">
+          <div class="aula-item"><div class="aula-play">▶</div>Materiais essenciais — qual agulha, fio e acessórios comprar<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Corrente, ponto baixo e ponto alto — os 3 pontos que você mais usa<div class="aula-dur">12 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como montar e fechar uma peça corretamente<div class="aula-dur">10 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como ler gráficos e receitas de crochê<div class="aula-dur">10 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Sua primeira peça completa — porta-copos do zero<div class="aula-dur">15 min</div></div>
+        </div></div>
+      </div>
+
+      <div class="modulo" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#C0614A">2</div>
+          <div class="modulo-info"><div class="modulo-title">As Peças que Mais Vendem</div><div class="modulo-meta">8 aulas · ~3h de conteúdo</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list">
+          <div class="aula-item"><div class="aula-play">▶</div>Tapete oval de fio de malha — R$110 a R$180<div class="aula-dur">20 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Bolsa tote de crochê — R$120 a R$200<div class="aula-dur">25 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Amigurumi personalizado — R$60 a R$120<div class="aula-dur">30 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Top cropped de crochê — R$150 a R$280<div class="aula-dur">25 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Jogo de banheiro — R$200 a R$350<div class="aula-dur">30 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Vestido infantil — R$180 a R$300<div class="aula-dur">30 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Necessaire de crochê — R$80 a R$150<div class="aula-dur">20 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Macramê — quadro decorativo — R$150 a R$400<div class="aula-dur">25 min</div></div>
+        </div></div>
+      </div>
+
+      <div class="modulo" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#4A7C59">3</div>
+          <div class="modulo-info"><div class="modulo-title">Como Precificar e Nunca Mais Trabalhar de Graça</div><div class="modulo-meta">5 aulas · ~55 min · Seu maior diferencial</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list">
+          <div class="aula-item"><div class="aula-play">▶</div>Por que você está trabalhando de graça sem perceber<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Mapeando todos os seus custos — inclusive os invisíveis<div class="aula-dur">12 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Quanto vale a sua hora? Calcule agora<div class="aula-dur">10 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>A fórmula completa com exemplos reais de cada peça<div class="aula-dur">15 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como responder cliente que acha caro e pede desconto<div class="aula-dur">10 min</div></div>
+        </div>
+        <div class="modulo-diferencial">✦ Disponível imediatamente após a compra</div>
+        </div>
+      </div>
+
+      <div class="modulo" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#4A7C59">4</div>
+          <div class="modulo-info"><div class="modulo-title">Como Vender pelo Instagram e WhatsApp Todo Dia</div><div class="modulo-meta">6 aulas · ~60 min</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list">
+          <div class="aula-item"><div class="aula-play">▶</div>Como fotografar sua peça com o celular e vender mais<div class="aula-dur">10 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>A estrutura da legenda que gera pedido<div class="aula-dur">10 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como usar o WhatsApp Business para vender todo dia<div class="aula-dur">12 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Estratégia de Instagram para artesãs sem muitos seguidores<div class="aula-dur">12 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como montar seu catálogo digital no WhatsApp<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como usar os 10 scripts prontos do pack de bônus<div class="aula-dur">8 min</div></div>
+        </div></div>
+      </div>
+
+      <div class="modulo" onclick="toggleModulo(this)">
+        <div class="modulo-hdr">
+          <div class="modulo-num" style="background:#7B5EA7">5</div>
+          <div class="modulo-info"><div class="modulo-title">Organizando Seu Negócio Para Escalar</div><div class="modulo-meta">4 aulas · ~34 min</div></div>
+          <div class="modulo-toggle">+</div>
+        </div>
+        <div class="modulo-body"><div class="aulas-list">
+          <div class="aula-item"><div class="aula-play">▶</div>Como controlar pedidos e nunca perder uma encomenda<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Separar o dinheiro do crochê do dinheiro pessoal<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Como definir sua meta mensal e quantas peças vender<div class="aula-dur">8 min</div></div>
+          <div class="aula-item"><div class="aula-play">▶</div>Próximos passos — como escalar seu negócio<div class="aula-dur">10 min</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÔNUS -->
+<section class="bonus-section">
+  <div class="container">
+    <div class="section-tag ouro">Bônus exclusivos</div>
+    <h2>4 bônus que valem mais do que o curso</h2>
+    <p class="section-lead">Incluídos sem custo extra para quem comprar hoje.</p>
+    <div class="bonus-grid">
+      <div class="bonus-card b1">
+        <div class="bonus-icon">📖</div>
+        <div class="bonus-title">Preço Justo para Artesanato</div>
+        <div class="bonus-desc">19 páginas com fórmula completa de precificação, exemplos reais e scripts para responder cliente que pede desconto.</div>
+        <div class="bonus-valor">Valor: <span>R$47</span> → <strong>Grátis para você</strong></div>
+      </div>
+      <div class="bonus-card b2">
+        <div class="bonus-icon">📊</div>
+        <div class="bonus-title">Planilha de Precificação Automática</div>
+        <div class="bonus-desc">Você coloca os dados e a planilha calcula o preço certo automaticamente. 3 abas: tapetes, amigurumis e roupas.</div>
+        <div class="bonus-valor">Valor: <span>R$37</span> → <strong>Grátis para você</strong></div>
+      </div>
+      <div class="bonus-card b3">
+        <div class="bonus-icon">💬</div>
+        <div class="bonus-title">Pack de 10 Legendas Prontas</div>
+        <div class="bonus-desc">10 modelos de legenda para Instagram e WhatsApp com gatilho emocional e instrução de quando usar.</div>
+        <div class="bonus-valor">Valor: <span>R$27</span> → <strong>Grátis para você</strong></div>
+      </div>
+      <div class="bonus-card b4">
+        <div class="bonus-icon">✅</div>
+        <div class="bonus-title">Checklist: Antes de Publicar sua Peça</div>
+        <div class="bonus-desc">15 itens para verificar antes de postar — foto, preço, legenda e logística. Com versão para imprimir.</div>
+        <div class="bonus-valor">Valor: <span>R$17</span> → <strong>Grátis para você</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section style="background:#fff">
+  <div class="container">
+    <div class="section-tag verde">Resultados reais</div>
+    <h2>O que nossas alunas estão <em>conquistando</em></h2>
+    <p class="section-lead">Resultados de alunas que aplicaram o método.</p>
+    <div class="depo-grid">
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"Eu cobrava R$60 pelo meu tapete oval. Depois do módulo de precificação descobri que estava no prejuízo. Passei a cobrar R$165 e vendi no mesmo dia."</div>
+        <div class="depo-author">
+          <div class="depo-avatar" style="background:#C0614A">MF</div>
+          <div><div class="depo-name">Maria Fernanda</div><div class="depo-city">São Paulo, SP</div></div>
+        </div>
+        <div class="depo-resultado">De R$60 → R$165 por tapete</div>
+      </div>
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"Nunca tinha feito crochê. Em 3 semanas aprendi os fundamentos, fiz meu primeiro amigurumi e já vendi 4 por R$110 cada. A planilha foi o que mais me surpreendeu."</div>
+        <div class="depo-author">
+          <div class="depo-avatar" style="background:#4A7C59">AS</div>
+          <div><div class="depo-name">Ana Santos</div><div class="depo-city">Belo Horizonte, MG</div></div>
+        </div>
+        <div class="depo-resultado">4 vendas na primeira semana — R$440</div>
+      </div>
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"O módulo de WhatsApp mudou tudo. Aprendi a postar no status todo dia e em duas semanas fechei 6 encomendas. Os scripts de legenda são ouro puro."</div>
+        <div class="depo-author">
+          <div class="depo-avatar" style="background:#7B5EA7">CO</div>
+          <div><div class="depo-name">Carla Oliveira</div><div class="depo-city">Fortaleza, CE</div></div>
+        </div>
+        <div class="depo-resultado">6 encomendas em 2 semanas via WhatsApp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section class="preco-section" id="preco">
+  <div class="container" style="text-align:center">
+    <div class="section-tag">Oferta especial</div>
+    <h2 style="color:#fff;margin-bottom:36px">Comece hoje por menos<br><em>do que um novelo de fio</em></h2>
+    <div class="preco-box">
+      <div class="preco-destaque">✦ Acesso imediato · Vitalício</div>
+      <div class="preco-de">De R$ 197,00</div>
+      <div class="preco-por"><sup>R$</sup>47</div>
+      <div class="preco-parcela">ou <strong>10x de R$ 4,97</strong> sem juros</div>
+      <div class="preco-lista">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;text-align:left">Liberado imediatamente</div>
+        <div class="preco-item"><div class="preco-check">✓</div>Módulo 1 — Fundamentos do crochê do zero</div>
+        <div class="preco-item"><div class="preco-check">✓</div>Módulo 2 — As peças que mais vendem (8 aulas)</div>
+        <div class="preco-item"><div class="preco-check">✓</div>Módulo 3 — Como precificar e nunca mais vender barato</div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin:10px 0 4px;text-align:left">Liberado no 8º dia</div>
+        <div class="preco-item"><div class="preco-check" style="background:#7B5EA7">✓</div>Módulo 4 — Vender pelo Instagram e WhatsApp</div>
+        <div class="preco-item"><div class="preco-check" style="background:#7B5EA7">✓</div>Módulo 5 — Organizar e escalar seu negócio</div>
+        <div class="preco-item"><div class="preco-check" style="background:#7B5EA7">✓</div>4 bônus: Ebook + Planilha + Legendas + Checklist</div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin:10px 0 4px;text-align:left">Sempre incluso</div>
+        <div class="preco-item"><div class="preco-check" style="background:#4A7C59">✓</div>Área de membros profissional — acesso vitalício</div>
+        <div class="preco-item"><div class="preco-check" style="background:#4A7C59">✓</div>Conteúdo sempre atualizado — novas aulas no Clube Mensal</div>
+      </div>
+      <a href="https://pay.kiwify.com.br/svaxUKE" target="_blank" class="btn-cta btn-cta-lg">
+        Quero acesso agora — R$ 47 <span>→</span>
+      </a>
+      <div class="preco-garantia">🔒 Compra segura · Acesso imediato · Garantia de 7 dias</div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section style="background:var(--bege)">
+  <div class="container">
+    <div class="garantia-box">
+      <div class="garantia-icon">🛡️</div>
+      <div>
+        <div class="garantia-title">Garantia incondicional de 7 dias</div>
+        <div class="garantia-text">Compre hoje, acesse tudo agora. Se por qualquer motivo você não ficar satisfeita nos primeiros 7 dias, devolvemos 100% do seu dinheiro — sem perguntas, sem burocracia. O risco é todo nosso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#fff">
+  <div class="container">
+    <div class="section-tag" style="display:block;text-align:center">Dúvidas frequentes</div>
+    <h2 style="text-align:center;margin-bottom:32px">Perguntas frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Preciso ter experiência em crochê para começar?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Não. O Módulo 1 começa do absoluto zero — agulha, fio, primeiro ponto. Se já faz crochê, você pode pular direto para os módulos de peças e vendas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Como vou receber o curso após a compra?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Imediatamente após o pagamento você recebe um email com o acesso à área de membros. Em menos de 5 minutos você já está assistindo as primeiras aulas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">O acesso realmente é vitalício?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Sim. Os módulos 1, 2 e 3 são liberados imediatamente após a compra. Os módulos 4 e 5 e os 4 bônus são liberados automaticamente no 8º dia — assim você tem tempo de absorver o conteúdo principal antes de receber tudo. O acesso a tudo é vitalício.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Consigo mesmo vender as peças pelo WhatsApp?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Sim. O Módulo 4 é dedicado a isso — fotografia, legenda, status do WhatsApp e transformar visualizações em pedidos. Você também recebe 10 scripts de legenda prontos para copiar e adaptar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">A planilha de precificação é difícil de usar?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Não. Você preenche os campos destacados e a planilha calcula o preço certo automaticamente. Tem aba de instruções e qualquer pessoa consegue usar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">E se eu me arrepender?<span class="faq-icon">+</span></div>
+        <div class="faq-a">7 dias de garantia total. Se por qualquer motivo não ficar satisfeita, é só pedir o reembolso. Devolvemos 100% sem questionar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <div class="container">
+    <h2>Sua primeira venda pode acontecer<br>ainda essa semana</h2>
+    <p>Você tem o talento. Agora você vai ter o método. Acesse hoje e comece a ganhar o que seu trabalho realmente vale.</p>
+    <a href="#preco" class="btn-cta btn-cta-lg btn-cta-final" style="margin:0 auto">
+      Quero começar agora — R$ 47 <span>→</span>
+    </a>
+    <div style="margin-top:14px;color:rgba(255,255,255,.45);font-size:12px;position:relative">🔒 Compra segura · Acesso imediato · Garantia de 7 dias</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Crochê e Renda · Todos os direitos reservados</p>
+  <p style="margin-top:5px">Este site não é afiliado ao Facebook, Instagram ou WhatsApp. Resultados variam conforme dedicação e esforço individual.</p>
+  <p style="margin-top:5px"><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-cta">
+  <div class="sticky-cta-info"><strong>R$ 47 — acesso vitalício</strong>Garantia de 7 dias</div>
+  <a href="https://pay.kiwify.com.br/svaxUKE" target="_blank" class="sticky-cta-btn">Comprar agora</a>
+</div>
+
+<script>
+function toggleModulo(el) { el.classList.toggle('open'); }
+function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
+function playVSL() {
+  alert('Cole o link do seu vídeo do YouTube aqui.\n\nNo código HTML, substitua o bloco vsl-placeholder pelo iframe:\n\n<iframe src="https://www.youtube.com/embed/SEU_ID?autoplay=1" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>');
+}
+
+// Lazy load imagens
+const imgObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const img = e.target;
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.addEventListener('load', () => img.classList.add('loaded'));
+        imgObs.unobserve(img);
+      }
+    }
+  });
+}, { rootMargin: '200px' });
+document.querySelectorAll('.img-load').forEach(img => imgObs.observe(img));
+
+// Scroll reveal
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.dor-item,.paraquem-item,.bonus-card,.depo-card,.peca-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  revealObs.observe(el);
+});
+</script>
+</body>
+</html>
